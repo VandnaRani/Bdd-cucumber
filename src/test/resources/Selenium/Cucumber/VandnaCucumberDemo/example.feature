@@ -7,3 +7,4 @@ Feature: TestDemo Php website
 	And addition the above two numbers and type into Results editboxes
 	When click on Submit button
 	Then get the thank you message and print into console
+	
