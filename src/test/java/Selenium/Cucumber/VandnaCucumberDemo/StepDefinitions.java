@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class StepDefinitions
  {
+	
 WebDriver driver;
    
     @Given("Open anyBrowser and type URL")
@@ -23,11 +24,8 @@ WebDriver driver;
     public void typeinvalidtestdata() throws Exception {
     	
     driver.findElement(By.name("first_name")).sendKeys("test");
-    Thread.sleep(2000);
     driver.findElement(By.name("last_name")).sendKeys("Test1");
-    Thread.sleep(2000);
     driver.findElement(By.name("business_name")).sendKeys("vani");
-    Thread.sleep(2000);
     driver.findElement(By.name("email")).sendKeys("abc@gmail.com");
     
  
@@ -69,9 +67,13 @@ WebDriver driver;
 
     @Then("get the thank you message and print into console")
     public void get_the_thank_you_message_and_print_into_console() throws Exception {
-       driver.findElement(By.cssSelector("p.text-center.cw")).getText();
-       Thread.sleep(2000);
-       System.out.println(driver.findElement(By.cssSelector("p.text-center.cw")).getText());
+       //driver.findElement(By.cssSelector("p.text-center.cw")).getText();
+    
+       //System.out.println ("driver.findElement(By.cssSelector("p.text-center.cw")).getText());
+       //System.out.println("Thankyou: "+driver.findElement(By.cssSelector("p.text-center.cw")).getText());
+      if (driver.findElement(By.cssSelector("p.text-center.cw")).getText().contains("Thank you!"));
+      //Thread.sleep(2000);
+    		   System.out.println("Thank you!");
     }
         
 
