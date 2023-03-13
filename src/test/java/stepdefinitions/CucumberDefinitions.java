@@ -1,18 +1,23 @@
-package Selenium.Cucumber.VandnaCucumberDemo;
-
-import io.cucumber.java.en.*;
+package stepdefinitions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class StepDefinitions
- {
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+
+	public class CucumberDefinitions {
+		WebDriver driver;
 	
-WebDriver driver;
-   
-    @Given("Open anyBrowser and type URL")
+	 
+		
+	
+	   
+	@Given("Open anyBrowser and type URL")
     public void open_any_browser_and_type_url() throws Exception {
         // Write code here that turns the phrase above into concrete actions
     	driver = new FirefoxDriver();
@@ -71,11 +76,18 @@ WebDriver driver;
     
        //System.out.println ("driver.findElement(By.cssSelector("p.text-center.cw")).getText());
        //System.out.println("Thankyou: "+driver.findElement(By.cssSelector("p.text-center.cw")).getText());
-      if (driver.findElement(By.cssSelector("p.text-center.cw")).getText().contains("Thank you!"));
+      if (driver.findElement(By.cssSelector("p.text-center.cw")).getText().contains("Thank you!")) {
+    	  
+      
       //Thread.sleep(2000);
-    		   System.out.println("Thank you!");
+    		   System.out.println("Given credential were invalid");
+    		   
+    }else {
+    	System.out.println("Given credentilas were valid");
     }
         
 
+    }}
 
-}
+
+	
