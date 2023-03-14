@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,13 +13,14 @@ import io.cucumber.java.en.When;
 
 	public class CucumberDefinitions {
 		WebDriver driver;
+		int c;
 	
 	 
 		
 	
 	   
 	@Given("Open anyBrowser and type URL")
-    public void open_any_browser_and_type_url() throws Exception {
+    public void test01() throws Exception {
         // Write code here that turns the phrase above into concrete actions
     	driver = new FirefoxDriver();
     	driver.get("https://phptravels.com/demo/");
@@ -26,8 +28,7 @@ import io.cucumber.java.en.When;
     }
 
     @When("user type invalid test data into all editboxes")
-    public void typeinvalidtestdata() throws Exception {
-    	
+    public void test02() {
     driver.findElement(By.name("first_name")).sendKeys("test");
     driver.findElement(By.name("last_name")).sendKeys("Test1");
     driver.findElement(By.name("business_name")).sendKeys("vani");
@@ -42,52 +43,51 @@ import io.cucumber.java.en.When;
         
     }
 
-    @Given("get the numbers")
-    public void get_the_numbers() {
-    	String a = driver.findElement(By.id("numb1")).getText();
-        String  b = driver.findElement(By.id("numb2")).getText();
+    @And("get the captcha numbers")
+    public void test03() {
+    	int a =  Integer.parseInt(driver.findElement(By.id("numb1")).getText());
+        int  b = Integer.parseInt(driver.findElement(By.id("numb2")).getText());
+        c = a+b;
         
         
 
      
     }
 
-    @Given("addition the above two numbers and type into Results editboxes")
-    public void addition_the_above_two_numbers_and_type_into_results_editboxes() {
-    	String a = driver.findElement(By.id("numb1")).getText();
-        String  b = driver.findElement(By.id("numb2")).getText();
-        
-    	Integer c = Integer.parseInt(a)+Integer.parseInt(b);
-    	driver.findElement(By.id("number")).sendKeys(c.toString());
-    	
+    @And("combined two captcha numbers and send to captcha editbox")
+    public void test04() {
+    	System.out.println(c);
+    	driver.findElement(By.id("number")).sendKeys(Integer.toString(c));
     	
     	
     	
     }
 
-    @When("click on Submit button")
-    public void click_on_submit_button() {
+    @Then("click on Submit button")
+    public void test05() throws Exception {
       driver.findElement(By.id("demo")).click();
+      Thread.sleep(2000);
     }
 
-    @Then("get the thank you message and print into console")
-    public void get_the_thank_you_message_and_print_into_console() throws Exception {
-       //driver.findElement(By.cssSelector("p.text-center.cw")).getText();
-    
-       //System.out.println ("driver.findElement(By.cssSelector("p.text-center.cw")).getText());
-       //System.out.println("Thankyou: "+driver.findElement(By.cssSelector("p.text-center.cw")).getText());
-      if (driver.findElement(By.cssSelector("p.text-center.cw")).getText().contains("Thank you!")) {
-    	  
+    @And("Print Thank you message")
+    public void test06() {
+       String thankyoumessage = driver.findElement(By.xpath("//*[@id=\"content\"]/section[1]/div/div/div[2]/div/div/div/div/div/div/div/div[3]/h2/strong")).getText();
+    	 System.out.println("Thankumessage") ;
+    	
+    	     
+    	 }
+    @When("user type invalid {string} and {string} and {string} and {string}")
+    public void test07(String first_name, String last_name, String business_name, String email) {
+		driver.findElement(By.name("first_name")).sendKeys(first_name);
+		driver.findElement(By.name("last_name")).sendKeys(last_name);
+		driver.findElement(By.name("business_name")).sendKeys(business_name);
+		driver.findElement(By.name("email")).sendKeys(email);
+
       
-      //Thread.sleep(2000);
-    		   System.out.println("Given credential were invalid");
-    		   
-    }else {
-    	System.out.println("Given credentilas were valid");
     }
-        
+	}   
 
-    }}
+    
 
-
+  //*[@id="content"]/section[1]/div/div/div[2]/div/div/div/div/div/div/div/div[3]/h2/strong
 	

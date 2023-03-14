@@ -22,7 +22,7 @@ public class FBDefinitions {
 
 	@When("user will type invalid username and password")
 	public void typeinvalidtestdata() throws InterruptedException {
-		driver.findElement(By.name("email")).sendKeys("abc12!@gmail.com");
+		driver.findElement(By.name("email")).sendKeys("abc@gmail.com");
 		Thread.sleep(2000);
 		driver.findElement(By.id("pass")).sendKeys("ansbsbdd");
 
@@ -35,8 +35,8 @@ public class FBDefinitions {
 
 	@Then("system should display error message")
 	public void validationerrormessage() {
-		if (driver.findElement(By.className("_9ay7")).getText()
-				.contains("The email you entered isn’t connected to an account")) {
+		if (driver.findElement(By.linkText("Forgot Password?")).getText()
+				.contains("Forgot Password?")) {
 			System.out.println("Given credentials were invalid");
 		} else {
 			System.out.println("Given credentials were valid");
